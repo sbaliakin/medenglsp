@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEnglish Hub — Английский для медицинского колледжа</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --accent: #10b981;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2.5rem 1rem; text-align: center; }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        nav { background: white; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: var(--primary-dark); font-weight: 600; transition: 0.2s; }
+        nav a:hover { color: var(--accent); }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+        section { margin-bottom: 3rem; }
+        h2 { color: var(--primary-dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+        
+        /* Карточки терминов */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+        .flashcard { background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; text-align: center; transition: transform 0.2s; border: 1px solid #e2e8f0; }
+        .flashcard:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .flashcard .term { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        .flashcard .trans { display: none; margin-top: 0.8rem; color: var(--text); font-weight: 500; border-top: 1px dashed #cbd5e1; padding-top: 0.5rem; }
+        .flashcard.flipped .trans { display: block; }
+        .hint { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+
+        /* Диалоги */
+        .dialogue-box { background: var(--card-bg); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .dialogue-box h3 { color: var(--primary-dark); margin-bottom: 0.8rem; }
+        .line { margin-bottom: 0.5rem; }
+        .role { font-weight: bold; color: var(--primary); }
+        .role.patient { color: #d97706; }
+
+        /* Кейсы */
+        .case-card { background: #fff; border-left: 4px solid var(--accent); padding: 1.2rem; margin-bottom: 1rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+        /* Тест */
+        .quiz-box { background: var(--card-bg); padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .question { margin-bottom: 1.2rem; }
+        .question p { font-weight: 600; margin-bottom: 0.5rem; }
+        .question label { display: block; margin-bottom: 0.3rem; cursor: pointer; }
+        button { background: var(--primary); color: white; border: none; padding: 0.8rem 1.5rem; font-size: 1rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        button:hover { background: var(--primary-dark); }
+        #quiz-result { margin-top: 1rem; font-weight: bold; font-size: 1.1rem; color: var(--accent); }
+
+        footer { text-align: center; padding: 2rem; background: #e2e8f0; color: var(--muted); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🩺 MedEnglish Hub</h1>
+    <p>Образовательный портал по профессиональному английскому языку для студентов медицинского колледжа</p>
+</header>
+
+<nav>
+    <a href="#vocab">Терминология</a>
+    <a href="#dialogues">Клинические диалоги</a>
+    <a href="#cases">Кейсы и ролевые игры</a>
+    <a href="#quiz">Самопроверка</a>
+</nav>
+
+<div class="container">
+
+    <section id="vocab">
+        <h2>1. Базовая медицинская лексика (Flashcards)</h2>
+        <p class="hint">Нажмите на любую карточку, чтобы проверить перевод и транскрипцию.</p>
+        <div class="grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Case history / Anamnesis</div>
+                <div class="trans">[ˈænəmˈniːsɪs] — Анамнез, история болезни</div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Blood pressure (BP)</div>
+                <div class="trans">[blʌd ˈpreʃər] — Артериальное давление</div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Shortness of breath</div>
+                <div class="trans">[ˈʃɔːrtnəs əv breθ] — Одышка</div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Patient hygiene</div>
+                <div class="trans">[ˈpeɪʃnt ˈhaɪdʒiːn] — Гигиена пациента</div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Prescription</div>
+                <div class="trans">[prɪˈskrɪpʃn] — Рецепт (на лекарство)</div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="term">Emergency department</div>
+                <div class="trans">[ɪˈmɜːrdʒənsi dɪˈpɑːrtmənt] — Приемное отделение</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dialogues">
+        <h2>2. Практика коммуникации: Диалоги в клинике</h2>
+        
+        <div class="dialogue-box">
+            <h3>Диалог А: Сбор анамнеза (Taking a Medical History)</h3>
+            <div class="line"><span class="role">Nurse:</span> Good morning! What brings you to the clinic today? (Доброе утро! Что привело вас в клинику?)</div>
+            <div class="line"><span class="role patient">Patient:</span> I have a severe headache and dizziness since yesterday. (У меня сильная головная боль и головокружение со вчерашнего дня.)</div>
+            <div class="line"><span class="role">Nurse:</span> Are you allergic to any medications? (У вас есть аллергия на какие-либо лекарства?)</div>
+            <div class="line"><span class="role patient">Patient:</span> Yes, I am allergic to penicillin. (Да, у меня аллергия на пенициллин.)</div>
+        </div>
+
+        <div class="dialogue-box">
+            <h3>Диалог Б: Поддержка тревожного пациента (Reassuring an Anxious Patient)</h3>
+            <div class="line"><span class="role">Nurse:</span> Please try to stay calm. You are in safe hands. (Пожалуйста, постарайтесь сохранять спокойствие. Вы в надежных руках.)</div>
+            <div class="line"><span class="role patient">Patient:</span> I'm really scared of the injection. Will it hurt? (Я очень боюсь укола. Это будет больно?)</div>
+            <div class="line"><span class="role">Nurse:</span> Just a tiny pinch for a second. Take a deep breath in and slowly breathe out. (Всего лишь легкий щипок на секунду. Сделайте глубокий вдох и медленно выдохните.)</div>
+        </div>
+    </section>
+
+    <section id="cases">
+        <h2>3. Ситуационные задачи (Case Studies) для работы в парах</h2>
+        <div class="case-card">
+            <strong>Кейс №1: Уход и гигиена (Patient Hygiene)</strong>
+            <p>Пациент после операции не может самостоятельно вставать с кровати. Объясните ему на английском языке, как будет проводиться утренний туалет и смена постельного белья, используя вежливые формы (<em>Could you please..., Let me help you...</em>).</p>
+        </div>
+        <div class="case-card">
+            <strong>Кейс №2: Первичный осмотр в приемном покое</strong>
+            <p>Иностранный турист обратился с жалобой на боль в животе. Разыграйте сценку: измерьте температуру (<em>temperature</em>), пульс (<em>pulse rate</em>) и уточните характер боли (острая — <em>sharp</em>, тупая — <em>dull</em>).</p>
+        </div>
+    </section>
+
+    <section id="quiz">
+        <h2>4. Экспресс-тест для студентов</h2>
+        <div class="quiz-box">
+            <div class="question">
+                <p>1. Как переводится термин «Shortness of breath»?</p>
+                <label><input type="radio" name="q1" value="0"> Боль в горле</label>
+                <label><input type="radio" name="q1" value="1"> Одышка</label>
+                <label><input type="radio" name="q1" value="0"> Высокое давление</label>
+            </div>
+            <div class="question">
+                <p>2. Какой вопрос задает медсестра, чтобы уточнить наличие аллергии?</p>
+                <label><input type="radio" name="q2" value="1"> Are you allergic to any medications?</label>
+                <label><input type="radio" name="q2" value="0"> Where does it hurt?</label>
+                <label><input type="radio" name="q2" value="0"> How old are you?</label>
+            </div>
+            <div class="question">
+                <p>3. Что означает слово «Prescription»?</p>
+                <label><input type="radio" name="q3" value="0"> Выписка из больницы</label>
+                <label><input type="radio" name="q3" value="0"> Медицинская страховка</label>
+                <label><input type="radio" name="q3" value="1"> Рецепт на лекарство</label>
+            </div>
+            <button onclick="checkQuiz()">Проверить ответы</button>
+            <div id="quiz-result"></div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Учебный проект по английскому языку для студентов СПО (Медицинский колледж)</p>
+</footer>
+
+<script>
+    function checkQuiz() {
